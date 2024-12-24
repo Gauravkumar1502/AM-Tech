@@ -14,7 +14,7 @@ authRouter.get('/register', (req, res) => res.render('register'));
 authRouter.post('/register', validateRequest(userRegistrationSchema, 'body', 'register'), registerUser);
 
 authRouter.get('/logout', (req, res) => {
-    res.clearCookie('jwtToken', { httpOnly: true, secure: true, sameSite: 'strict' });
+    res.clearCookie('jwtToken');
     res.redirect('/login');
 });
 
