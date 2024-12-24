@@ -17,7 +17,7 @@ let x = setInterval(() => {
     timer.innerHTML = `${minutes}m ${String(seconds).padStart(2, '0')}s`;
     // If the count down is over, write some text
     // if (remainTime <= oneMinute) {
-    if (remainTime <= oneMinute && !isWarningShown) {
+    if (remainTime <= 5 * oneMinute && !isWarningShown) {
         warning.innerHTML = "Your session is about to expire. Logout and re-login to avoid losing your progress.";
         isWarningShown = true;
         warning.style.display = "block";
