@@ -27,7 +27,7 @@ export const loginUser = async (req, res) => {
         const { email, password, 'g-recaptcha-response': recaptchaToken } = req.body;
         // Verify the reCAPTCHA token
         const data = await verifyRecaptcha(recaptchaToken);
-
+        console.log(data);
         if (!data.success) {
             return res.render('login', { error: 'reCAPTCHA verification failed.' });
         }
