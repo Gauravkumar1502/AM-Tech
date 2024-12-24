@@ -11,6 +11,7 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </head>
   <body>
     <div class="container">
@@ -42,9 +43,14 @@
             required
           />
         </div>
+        <div
+          class="g-recaptcha"
+          data-sitekey="6LeJ4qQqAAAAAM1m_KhjPb59gkAFJyKIRS4hp-Dr"
+        ></div>
+        <br />
         <button type="submit" class="btn btn-primary">Login</button>
-        <p>Don't have an account? <a href="/register">Register</a></p>
       </form>
+      <p>Don't have an account? <a href="/register">Register</a></p>
     </div>
   </body>
 </html>
