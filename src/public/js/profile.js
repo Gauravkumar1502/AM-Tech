@@ -6,7 +6,6 @@ const expireAt = parseInt(timer.innerText) * 1000;
 let isWarningShown = false;
 let x = setInterval(() => {
     const remainTime = expireAt - Date.now()
-    console.log(remainTime);
     const oneSecond = 1000;
     const oneMinute = oneSecond * 60;
     const oneHour = oneMinute * 60;
