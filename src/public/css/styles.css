@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --background-color: #f4f4f4;
+  --text-color: #333;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -26,4 +33,11 @@
 }
 h1 {
   text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #333;
+    --text-color: #f4f4f4;
+  }
 }
