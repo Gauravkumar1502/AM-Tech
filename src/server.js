@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
 
 import authRouter from './routes/authRoutes.js';
 import homeRouter from './routes/homeRoutes.js';
@@ -22,6 +23,18 @@ app.use(cors());
 
 // set static folder
 app.use(express.static('src/public'));
+
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    limit: 100,
+    standardHeaders: 'draft-8',
+    legacyHeaders: false,
+    message: {
+        error: 'Too many requests, please try again later.',
+    },
+});
+
+app.use(limiter);
 
 // set the view engine to ejs
 app.set('views', 'src/views');
