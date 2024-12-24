@@ -17,18 +17,24 @@
       <h2>Profile</h2>
       <nav>
         <ul>
+          <!-- Display the jwtoken time remaining -->
+          <li class="token-timer">
+            <strong>
+              Expires in: <span id="token-time"> <%= expireAt %> </span>
+            </strong>
+          </li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </nav>
     </header>
     <div class="container">
       <div class="profile container">
+        <!-- show importent message -->
+        <div class="warning">
+          <p id="warning"></p>
+        </div>
         <h3>Profile Information</h3>
         <hr />
-        <!-- <p><strong>User ID:</strong> <%= user.id %></p>
-        <p><strong>Username:</strong> <%= user.username %></p>
-        <p><strong>Email:</strong> <%= user.email %></p>
-        <p><strong>Create At:</strong> <%= user.createdAt %></p> -->
         <% if (user) { %>
         <p><strong>User ID:</strong> <%= user.id %></p>
         <p><strong>Username:</strong> <%= user.username %></p>
@@ -40,4 +46,5 @@
       </div>
     </div>
   </body>
+  <script src="js/profile.js" defer></script>
 </html>
