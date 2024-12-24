@@ -9,5 +9,5 @@ export const userRegistrationSchema = Joi.object({
 export const userLoginSchema = Joi.object({
     email: Joi.string().required(),
     password: Joi.string().required(),
-    // recaptchaToken: Joi.string().required()
+    "g-recaptcha-response": Joi.string().required()
 });
