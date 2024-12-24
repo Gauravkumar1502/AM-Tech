@@ -2,6 +2,8 @@ import { comparePassword, hashPassword } from "../utils/passwordUtil.js";
 import * as userService from "../services/userService.js";
 import * as jwtUtil from "../utils/jwtUtil.js";
 
+const maxAge = 1.5 * 60 * 1000; // 15 minutes
+
 export const registerUser = async (req, res) => {
     try {
         const { username, email, password } = req.body;
@@ -12,9 +14,7 @@ export const registerUser = async (req, res) => {
         const newUser = await userService.saveUser(username, email, hashedPassword);
         const jwtToken = jwtUtil.generateJwtToken({ id: newUser.id });
         res.cookie('jwtToken', jwtToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 15 * 60 * 1000, // 15 minutes
+            maxAge: maxAge * 60 * 1000,
         });
         res.redirect('/profile');
     } catch (error) {
@@ -45,9 +45,7 @@ export const loginUser = async (req, res) => {
         }
         const jwtToken = jwtUtil.generateJwtToken({ id: user.id });
         res.cookie('jwtToken', jwtToken, {
-            httpOnly: true,
-            secure: true,
-            maxAge: 15 * 60 * 1000, // 15 minutes
+            maxAge: maxAge * 60 * 1000,
         });
         res.redirect('/profile');
     } catch (error) {
