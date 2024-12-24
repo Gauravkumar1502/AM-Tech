@@ -24,7 +24,17 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        const { email, password, recaptchaToken } = req.body;
+        const { email, password, 'g-recaptcha-response': recaptchaToken } = req.body;
+        // Verify the reCAPTCHA token
+        const data = await verifyRecaptcha(recaptchaToken);
+
+        if (!data.success) {
+            return res.render('login', { error: 'reCAPTCHA verification failed.' });
+        }
+        if (data.error_codes) {
+            return res.render('login', { error: 'reCAPTCHA verification failed.' });
+        }
+
         const user = await userService.getUserByUsernameOrEmail(email);
         if (!user) {
             return res.render('login', { error: 'Invalid username or password.' });
@@ -41,7 +51,14 @@ export const loginUser = async (req, res) => {
         });
         res.redirect('/profile');
     } catch (error) {
-        console.log(error);
         res.render('login', { error: 'An error occurred. Please try again.' });
     }
+}
+
+const verifyRecaptcha = async (recaptchaToken) => {
+    const response = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`, {
+        method: 'POST',
+    });
+    const data = await response.json();
+    return data;
 }
