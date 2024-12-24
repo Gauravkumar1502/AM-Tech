@@ -42,6 +42,9 @@
 .profile {
   padding: 1rem;
 }
+.warning > p {
+  display: none;
+}
 .warning,
 .error {
   color: red;
