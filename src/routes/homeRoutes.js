@@ -14,7 +14,7 @@ homeRouter.get('/', validateJwtToken, async (req, res) => {
         if (!dbUser) {
             return res.redirect('/login');
         }
-        res.render('profile', { user: dbUser });
+        res.render('profile', { user: dbUser, expireAt: req.user.exp });
     } catch (error) {
         res.redirect('/login');
     }
