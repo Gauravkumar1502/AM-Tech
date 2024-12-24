@@ -19,13 +19,30 @@
     color: var(--text-color);
     text-decoration: underline;
   }
-  li {
-    list-style: none;
+  ul {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    li {
+      list-style: none;
+      padding: 0.25rem 0.5rem;
+      &:last-child {
+        border-radius: 8px;
+        border: 1px solid var(--text-color);
+        &:hover {
+          opacity: 0.8;
+          a {
+            text-decoration: none;
+          }
+        }
+      }
+    }
   }
 }
 .profile {
   padding: 1rem;
 }
+.warning,
 .error {
   color: red;
   text-align: center;
